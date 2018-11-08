@@ -16,11 +16,11 @@ This project is being developed under the GPLv2 LICENSE.
 
 ## For production
 
-#### 2. Install NPM
+#### 1. Install NPM
 
 Install NPM: https://nodejs.org/en/
 
-#### 3. Install npm packages
+#### 2. Install npm packages
 
 Setup the UserClient
 ```
@@ -44,7 +44,7 @@ $ npm run build
 $ cd ..
 ```
 
-#### 4. Setup your MySQL Database
+#### 3. Setup your MySQL Database
 
 You need to be running a mysql database instance locally with username:password root:medrecpassword:
 - run query `/scripts/medrec-v1.sql`. It will create a schema called `medrec-v1` for you to store/retrieve information from. It is representing the "remote" DB.
@@ -52,7 +52,7 @@ You need to be running a mysql database instance locally with username:password 
 
 If you do not want to be able to look at the example patient records you can skip this section.
 
-#### 5. Start all of MedRec's components
+#### 4. Start all of MedRec's components
 
 ```
 $ ./medrec EthereumClient
@@ -61,28 +61,13 @@ $ ./medrec UserClient
 ```
 
 ## For Development
-#### 1. Setup a PoA blockchain
+### Part 1: NPM
 
-Use Goethereum to setup a proof of authority blockchain
-
-##### 2. Connect to the blockchain
-
-MedRec has to be modified to connect to the provider nodes of this blockchain. Edit the medrec-genesis.json and startGeth.js in GolangJSHelpers/ so that the parameters match with your network.
-
-#### 3. Install Go and golang libraries
-
-Install Go: https://github.com/golang/go or `brew install go`
-
-and run:
-```
-$ go get
-```
-
-#### 4. Install NPM
+#### 1. Install NPM
 
 Install NPM: https://nodejs.org/en/
 
-#### 5. Install npm packages
+#### 2. Install npm packages
 
 ```
 $ cd UserClient
@@ -96,7 +81,47 @@ To resolve an annoying won't fix bug in the bitcoin-mnemonic library you also ne
 $ rm node_modules/bitcore-mnemonic/node_modules/bitcore-lib
 ```
 
-#### 6. Run the Database manager
+### Part 2: Blockchain 
+#### 1. Setup a PoA blockchain
+
+Use Goethereum to setup a proof of authority blockchain
+
+#### 2. Connect to the blockchain
+
+MedRec has to be modified to connect to the provider nodes of this blockchain. Edit the medrec-genesis.json and startGeth.js in GolangJSHelpers/ so that the parameters match with your network.
+
+#### 3. Deploy the contracts
+You will need to install the program truffle using npm to deploy contracts.
+ ```
+ npm install -g truffle
+ npm install -g ganache-cli
+ ```
+
+In the `SmartContracts` director: `truffle deploy`. The `ganache-cli` should respond to this command showing that the contracts have been deployed.
+
+#### 4. Start the UserClient
+
+```
+$ cd UserClient
+$ npm start
+```
+
+if it throws an error with `web3-requestManager`, do `npm install web3@1.0.0-beta.26`.
+
+
+
+### Part 3: Golang
+
+#### 1. Install Go and golang libraries
+
+Install Go: http://sourabhbajaj.com/mac-setup/Go/README.html
+
+and run:
+```
+$ go get
+```
+
+#### 2. Run the Database manager
 
 You need to be running a mysql database instance locally with username:password root:medrecpassword:
 - run query `/scripts/medrec-v1.sql`. It will create a schema called `medrec-v1` for you to store/retrieve information from. It is representing the "remote" DB.
@@ -106,21 +131,8 @@ You need to be running a mysql database instance locally with username:password 
 
 It should start the DatabaseManager running on localhost:6337
 
-#### 7. Deploy the contracts
-You will need to install the program truffle using npm to deploy contracts.
 
-In the `SmartContracts` director: `truffle deploy`. The `ganache-cli` should respond to this command showing that the contracts have been deployed.
-
-#### 8. Start the UserClient
-
-```
-$ cd UserClient
-$ npm start
-```
-
-if it throws an error with `web3-requestManager`, do `npm install web3@1.0.0-beta.26`.
-
-#### 9. Building a new production version
+### Part 4: Building a new production version
 
 ```
 $ go build
