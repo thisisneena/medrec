@@ -81,6 +81,14 @@ To resolve an annoying won't fix bug in the bitcoin-mnemonic library you also ne
 $ rm node_modules/bitcore-mnemonic/node_modules/bitcore-lib
 ```
 
+#### 3. Start the UserClient
+
+```
+$ npm start
+```
+
+if it throws an error with `web3-requestManager`, do `npm install web3@1.0.0-beta.26`.
+
 ### Part 2: Blockchain 
 #### If you want to run on the mainnet: Setup a PoA blockchain
 
@@ -98,15 +106,6 @@ You will need to install the program truffle using npm to deploy contracts.
  In a separate terminal window, run `ganache-cli`.
 
 In the `SmartContracts` director: `truffle deploy`. The `ganache-cli` should respond to this command showing that the contracts have been deployed.
-
-#### 4. Start the UserClient
-
-```
-$ cd UserClient
-$ npm start
-```
-
-if it throws an error with `web3-requestManager`, do `npm install web3@1.0.0-beta.26`.
 
 
 
