@@ -132,15 +132,6 @@ You need to be running a mysql database instance locally with username:password 
 It should start the DatabaseManager running on localhost:6337
 
 
-### Part 4: Building a new production version
-
-```
-$ go build
-$ cd UserClient
-$ npm run build
-```
-
-
 # Getting Started With the MedRec Codebase
 
 ## 1. Link MedRec to an existing database
