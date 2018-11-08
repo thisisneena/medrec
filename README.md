@@ -118,13 +118,32 @@ Install Go: http://sourabhbajaj.com/mac-setup/Go/README.html
 and run:
 ```
 $ go get
+``` 
+
+??? this doesn't work
+
+#### 2. Setup MySQL 
+```
+$ brew install mysql
+$ brew tap homebrew/service
+$ brew services start mysql
 ```
 
-#### 2. Run the Database manager
+We can now verify that MySQL has been setup by running `mysql -V`! 
 
-You need to be running a mysql database instance locally with username:password root:medrecpassword:
-- run query `/scripts/medrec-v1.sql`. It will create a schema called `medrec-v1` for you to store/retrieve information from. It is representing the "remote" DB.
-- run query `/scripts/medrecwebapp.sql` for the "local" DB.
+#### 3. Setup Databases
+```
+$ mysqladmin -u root password 'medrecpassword'
+$ mysql -u root -p 
+// the password is: medrecpassword
+```
+In the mysql command prompt, run the following commands to create the schema and local db: 
+```
+> source scripts/medrec-v1.sql
+> source scripts/medrecwebapp.sql
+```
+
+#### 4. Run the Database manager
 
 `$ go run main.go DatabaseManager`
 
