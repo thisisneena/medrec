@@ -82,20 +82,20 @@ $ rm node_modules/bitcore-mnemonic/node_modules/bitcore-lib
 ```
 
 ### Part 2: Blockchain 
-#### 1. Setup a PoA blockchain
+#### If you want to run on the mainnet: Setup a PoA blockchain
 
 Use Goethereum to setup a proof of authority blockchain
 
-#### 2. Connect to the blockchain
-
 MedRec has to be modified to connect to the provider nodes of this blockchain. Edit the medrec-genesis.json and startGeth.js in GolangJSHelpers/ so that the parameters match with your network.
 
-#### 3. Deploy the contracts
+#### Deploy contracts
 You will need to install the program truffle using npm to deploy contracts.
  ```
  npm install -g truffle
  npm install -g ganache-cli
  ```
+ 
+ In a separate terminal window, run `ganache-cli`.
 
 In the `SmartContracts` director: `truffle deploy`. The `ganache-cli` should respond to this command showing that the contracts have been deployed.
 
